@@ -7,10 +7,7 @@ BP_DIR=$(cd $(dirname $0)/..; pwd)
 BIN_DIR=$BP_DIR/bin
 LIB_DIR=$BP_DIR/lib
 
-echo "RELEASE: Running release script"
-
-if [ ! -f $BUILD_DIR/Procfile ]; then
-  echo "RELEASE: No proc file"
-else
-  echo "RELEASE: Proc file found"
-fi
+cat <<EOF
+---
+release: node _s3_upload/upload.js
+EOF
