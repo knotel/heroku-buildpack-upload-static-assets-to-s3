@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-# bin/compile <build-dir> <cache-dir> <env-dir>
+# bin/release <build-dir> <cache-dir> <env-dir>
+
+echo "Starting release script $1 $2"
 
 ### Configure environment
 
