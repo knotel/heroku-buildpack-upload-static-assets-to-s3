@@ -1,1 +1,16 @@
 #!/usr/bin/env bash
+# bin/release <build-dir>
+
+export BUILD_DIR=$1
+
+BP_DIR=$(cd $(dirname $0)/..; pwd)
+BIN_DIR=$BP_DIR/bin
+LIB_DIR=$BP_DIR/lib
+
+echo "RELEASE: Running release script"
+
+if [ ! -f $BUILD_DIR/Procfile ]; then
+  echo "RELEASE: No proc file"
+else
+  echo "RELEASE: Proc file found"
+fi
