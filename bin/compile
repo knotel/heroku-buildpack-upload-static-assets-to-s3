@@ -17,6 +17,16 @@ BP_DIR=$(cd $(dirname ${0:-}); cd ..; pwd)
 ### Load dependencies
 source ${BP_DIR}/lib/output.sh
 
+whitelist_regex=${2:-''}
+blacklist_regex=${3:-'^(PATH|GIT_DIR|CPATH|CPPATH|LD_PRELOAD|LIBRARY_PATH)$'}
+if [ -d "$ENV_DIR" ]; then
+  for e in $(ls $ENV_DIR); do
+    echo "$e" | grep -E "$whitelist_regex" | grep -qvE "$blacklist_regex" &&
+    export "$e=$(cat $ENV_DIR/$e)"
+    :
+  done
+fi
+
 ### Upload with Node
 SCRIPT_DEST=${BUILD_DIR}/_s3_upload
 mkdir ${SCRIPT_DEST}
@@ -28,6 +38,10 @@ echo "===="
 echo "AWS SD $AWS_STATIC_SOURCE_DIRECTORY"
 cat <<EOF >> ${SCRIPT_DEST}/upload.sh
 #!/usr/bin/env bash
+set -o errexit    # always exit on error
+set -o pipefail   # don't ignore exit codes when piping output
+set -o nounset    # fail on unset variables
+
 export AWS_STATIC_SOURCE_DIRECTORY=${AWS_STATIC_SOURCE_DIRECTORY}
 export AWS_STATIC_BUCKET_NAME=${AWS_STATIC_BUCKET_NAME}
 export AWS_STATIC_PREFIX=${AWS_STATIC_PREFIX}
