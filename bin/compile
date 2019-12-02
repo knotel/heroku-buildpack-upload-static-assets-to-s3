@@ -17,14 +17,10 @@ BP_DIR=$(cd $(dirname ${0:-}); cd ..; pwd)
 ### Load dependencies
 source ${BP_DIR}/lib/output.sh
 
-whitelist_regex=${2:-''}
-blacklist_regex=${3:-'^(PATH|GIT_DIR|CPATH|CPPATH|LD_PRELOAD|LIBRARY_PATH)$'}
 if [ -d "$ENV_DIR" ]; then
   for e in $(ls $ENV_DIR); do
     echo "File $e $ENV_DIR/$e $(cat $ENV_DIR/$e)"
-    echo "$e" | grep -E "$whitelist_regex" | grep -qvE "$blacklist_regex" &&
     declare "$e=$(cat $ENV_DIR/$e)"
-    :
   done
 fi
 
