@@ -27,4 +27,4 @@ ENV_DIR=${ENV_DIR} \
 SOURCE_VERSION=${SOURCE_VERSION} \
 SCRIPT_DEST=${BUILD_DIR}/_s3_upload
 mkdir ${SCRIPT_DEST}
-cp ${BP_DIR}/lib/upload.js | ${SCRIPT_DEST}
+cp ${BP_DIR}/lib/upload.js ${SCRIPT_DEST}
