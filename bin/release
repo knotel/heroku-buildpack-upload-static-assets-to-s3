@@ -9,5 +9,6 @@ LIB_DIR=$BP_DIR/lib
 
 cat <<EOF
 ---
-release: node _s3_upload/upload.js
+default_process_types:
+  release: node _s3_upload/upload.js
 EOF
