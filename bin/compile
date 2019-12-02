@@ -25,7 +25,7 @@ cp ${BP_DIR}/lib/upload.js ${SCRIPT_DEST}
 echo "===="
 ls ${ENV_DIR}
 echo "===="
-echo "AWS SD ${AWS_STATIC_SOURCE_DIRECTORY}"
+echo "AWS SD $AWS_STATIC_SOURCE_DIRECTORY"
 cat <<EOF >> ${SCRIPT_DEST}/upload.sh
 #!/usr/bin/env bash
 export AWS_STATIC_SOURCE_DIRECTORY=${AWS_STATIC_SOURCE_DIRECTORY}
