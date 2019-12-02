@@ -20,8 +20,6 @@ if [ -d "$ENV_DIR" ]; then
   done
 fi
 
-printenv
-
 ### Upload with Node
 SCRIPT_DEST=${BUILD_DIR}/_s3_upload
 mkdir ${SCRIPT_DEST}
@@ -45,3 +43,6 @@ echo VER \${HEROKU_RELEASE_VERSION}
 yarn install
 node upload.js
 EOF
+
+echo "==== Copied?? "
+ls -l ${SCRIPT_DEST}
