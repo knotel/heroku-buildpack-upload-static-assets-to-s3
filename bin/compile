@@ -43,3 +43,5 @@ echo VER \${HEROKU_RELEASE_VERSION}
 yarn install
 node upload.js
 EOF
+
+chmod 755 ${SCRIPT_DEST}/upload.sh
