@@ -3,12 +3,10 @@
 
 export BUILD_DIR=$1
 
-BP_DIR=$(cd $(dirname $0)/..; pwd)
-BIN_DIR=$BP_DIR/bin
-LIB_DIR=$BP_DIR/lib
+SCRIPT_DEST=${BUILD_DIR}/_s3_upload
 
 cat <<EOF
 ---
 default_process_types:
-  release: node _s3_upload/upload.js
+  release: node ${SCRIPT_DEST}/upload.js
 EOF

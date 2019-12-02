@@ -25,4 +25,6 @@ BUILD_DIR=${BUILD_DIR} \
 CACHE_DIR=${CACHE_DIR} \
 ENV_DIR=${ENV_DIR} \
 SOURCE_VERSION=${SOURCE_VERSION} \
-node ${BP_DIR}/lib/upload.js | output "$LOG_FILE"
+SCRIPT_DEST=${BUILD_DIR}/_s3_upload
+mkdir ${SCRIPT_DEST}
+cp ${BP_DIR}/lib/upload.js | ${SCRIPT_DEST}
