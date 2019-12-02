@@ -14,12 +14,8 @@ CACHE_DIR=${2:-}
 ENV_DIR=${3:-}
 BP_DIR=$(cd $(dirname ${0:-}); cd ..; pwd)
 
-### Load dependencies
-source ${BP_DIR}/lib/output.sh
-
 if [ -d "$ENV_DIR" ]; then
   for e in $(ls $ENV_DIR); do
-    echo "File $e $ENV_DIR/$e $(cat $ENV_DIR/$e)"
     declare "$e=$(cat $ENV_DIR/$e)"
   done
 fi
@@ -31,7 +27,6 @@ SCRIPT_DEST=${BUILD_DIR}/_s3_upload
 mkdir ${SCRIPT_DEST}
 cp ${BP_DIR}/package.json ${SCRIPT_DEST}
 cp ${BP_DIR}/lib/upload.js ${SCRIPT_DEST}
-echo "AWS SD $AWS_STATIC_SOURCE_DIRECTORY"
 cat <<EOF >> ${SCRIPT_DEST}/upload.sh
 #!/usr/bin/env bash
 set -o errexit    # always exit on error
@@ -46,7 +41,7 @@ export AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
 echo ${AWS_ACCESS_KEY_ID}
 export AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
 echo ${AWS_SECRET_ACCESS_KEY}
-echo VER ${HEROKU_RELEASE_VERSION}
+echo VER \${HEROKU_RELEASE_VERSION}
 yarn install
 node upload.js
 EOF
