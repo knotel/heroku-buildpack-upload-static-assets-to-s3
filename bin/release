@@ -8,5 +8,5 @@ SCRIPT_DEST=${BUILD_DIR}/_s3_upload
 cat <<EOF
 ---
 default_process_types:
-  release: cd _s3_upload && yarn intall && node upload.js
+  release: cd _s3_upload && yarn install && node upload.js
 EOF
