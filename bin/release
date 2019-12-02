@@ -8,5 +8,5 @@ SCRIPT_DEST=${BUILD_DIR}/_s3_upload
 cat <<EOF
 ---
 default_process_types:
-  release: ls && node _s3_upload/upload.js
+  release: node _s3_upload/upload.js
 EOF
