@@ -8,5 +8,5 @@ SCRIPT_DEST=${BUILD_DIR}/_s3_upload
 cat <<EOF
 ---
 default_process_types:
-  release: _s3_upload/update.sh
+  release: ls -lR && _s3_upload/update.sh
 EOF
