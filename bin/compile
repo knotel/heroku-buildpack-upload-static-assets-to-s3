@@ -20,6 +20,7 @@ source ${BP_DIR}/lib/output.sh
 whitelist_regex=${2:-''}
 blacklist_regex=${3:-'^(PATH|GIT_DIR|CPATH|CPPATH|LD_PRELOAD|LIBRARY_PATH)$'}
 if [ -d "$ENV_DIR" ]; then
+  echo "Loading ENVs ${ENV_DIR}"
   for e in $(ls $ENV_DIR); do
     echo "$e" | grep -E "$whitelist_regex" | grep -qvE "$blacklist_regex" &&
     export "$e=$(cat $ENV_DIR/$e)"
@@ -33,7 +34,7 @@ mkdir ${SCRIPT_DEST}
 cp ${BP_DIR}/package.json ${SCRIPT_DEST}
 cp ${BP_DIR}/lib/upload.js ${SCRIPT_DEST}
 echo "===="
-ls ${ENV_DIR}
+ls $ENV_DIR
 echo "===="
 echo "AWS SD $AWS_STATIC_SOURCE_DIRECTORY"
 cat <<EOF >> ${SCRIPT_DEST}/upload.sh
