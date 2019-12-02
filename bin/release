@@ -10,7 +10,5 @@ cat <<EOF
 default_process_types:
   release: >
     cd _s3_upload &&
-    yarn install &&
-    ./env.sh &&
-    node upload.js
+    ./update.sh
 EOF
